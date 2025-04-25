@@ -7,7 +7,7 @@ import morgan from 'morgan';
 import authRoutes from './api/auth/routes';
 import userRoutes from './api/users/routes';
 import travelRoutes from './api/travel/routes';
-import recommendationsRoutes from './api/recommendations/routes';
+import recommendationsRoutes from './api/ai/routes';
 import vrRoutes from './api/vr/routes';
 
 import errorHandler from './middleware/errorHandler';
