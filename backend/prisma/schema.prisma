@@ -1,0 +1,73 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String
+  firstName     String?
+  lastName      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  preferences   Json?     // Stocke les préférences de voyage de l'utilisateur 
+  bookings      Booking[]
+  sessions      Session[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Booking {
+  id          String   @id @default(uuid())
+  userId      String
+  type        String   // FLIGHT, ACCOMMODATION, ACTIVITY
+  status      String   // PENDING, CONFIRMED, CANCELLED
+  details     Json     // Stocke les détails de la réservation (dépend du type)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Destination {
+  id           String   @id @default(uuid())
+  name         String
+  country      String
+  description  String
+  coordinates  Json     // { latitude: number, longitude: number }
+  images       Json[]   // URLs des images
+  rating       Float?
+  tags         String[]
+  vrAvailable  Boolean  @default(false)
+  vrPreviewUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Activity {
+  id            String   @id @default(uuid())
+  title         String
+  description   String
+  destinationId String?  // Peut être lié à une destination mais pas obligatoire
+  location      Json     // { address: string, coordinates: { latitude: number, longitude: number } }
+  duration      Int      // En minutes
+  price         Json     // { amount: number, currency: string }
+  tags          String[]
+  vrAvailable   Boolean  @default(false)
+  vrPreviewUrl  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

@@ -1,0 +1,85 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+dist/
+dist-ssr/
+.swc/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Build directories
+build/
+out/
+target/
+
+# Logs
+logs/
+*.log
+
+# IDE and editor files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+._*
+Thumbs.db
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Dependency directories
+.yarn/
+bower_components/
+
+# Prisma
+prisma/.env
+
+# Production
+.vercel
+.netlify
+.next/
+
+# Database
+*.sqlite
+*.db
+
+# Redis
+dump.rdb
+
+# Docker
+docker-compose.override.yml
+
+# OS specific
+.DS_Store
+.directory
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*.swp
+temp/
